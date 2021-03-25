@@ -3,8 +3,6 @@ import os
 import ctypes
 import sys
 
-curdir = os.getcwd()
-
 def recursive_delete(dir):
 
     os.chdir(dir)
@@ -51,9 +49,3 @@ def is_admin():
         return ctypes.windll.shell32.IsUserAnAdmin()
     except:
         return False
-
-
-if is_admin():
-    delete_directory()
-else:
-     ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
